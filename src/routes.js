@@ -2,20 +2,28 @@ import React from 'react'
 
 const Home = React.lazy(() => import('src/views/home/Home'))
 const Logs = React.lazy(() => import('src/views/cipp/Logs'))
+const Scheduler = React.lazy(() => import('src/views/cipp/Scheduler'))
 const Users = React.lazy(() => import('src/views/identity/administration/Users'))
 const DeletedItems = React.lazy(() => import('src/views/identity/administration/Deleted'))
 const ViewBEC = React.lazy(() => import('src/views/identity/administration/ViewBEC'))
 const AddUser = React.lazy(() => import('src/views/identity/administration/AddUser'))
+const InviteGuest = React.lazy(() => import('src/views/identity/administration/InviteGuest'))
 const EditUser = React.lazy(() => import('src/views/identity/administration/EditUser'))
 const ViewUser = React.lazy(() => import('src/views/identity/administration/ViewUser'))
 const Groups = React.lazy(() => import('src/views/identity/administration/Groups'))
 const AddGroup = React.lazy(() => import('src/views/identity/administration/AddGroup'))
+const UserSettings = React.lazy(() => import('src/views/cipp/UserSettings'))
+
 const AddGroupTemplates = React.lazy(() =>
   import('src/views/identity/administration/AddGroupTemplate'),
 )
 const DeployGroupTemplates = React.lazy(() =>
   import('src/views/identity/administration/DeployGroupTemplate'),
 )
+const GeoIPLookup = React.lazy(() => import('src/views/tenant/administration/GeoIPLookup'))
+
+const TenantLookup = React.lazy(() => import('src/views/tenant/administration/TenantLookup'))
+
 const GroupTemplates = React.lazy(() => import('src/views/identity/administration/GroupTemplates'))
 
 const EditGroup = React.lazy(() => import('src/views/identity/administration/EditGroup'))
@@ -31,12 +39,15 @@ const Page500 = React.lazy(() => import('src/views/pages/page500/Page500'))
 const MFAReport = React.lazy(() => import('src/views/identity/reports/MFAReport'))
 const Tenants = React.lazy(() => import('src/views/tenant/administration/Tenants'))
 const AlertWizard = React.lazy(() => import('src/views/tenant/administration/AlertWizard'))
+const AlertRules = React.lazy(() => import('src/views/tenant/administration/AlertRules'))
+
 const AlertsQueue = React.lazy(() => import('src/views/tenant/administration/ListAlertsQueue'))
 const GraphExplorer = React.lazy(() => import('src/views/tenant/administration/GraphExplorer'))
 
 const Domains = React.lazy(() => import('src/views/tenant/administration/Domains'))
 const EditTenant = React.lazy(() => import('src/views/tenant/administration/EditTenant'))
 const ConditionalAccess = React.lazy(() => import('src/views/tenant/conditional/ConditionalAccess'))
+const DeployVacationCA = React.lazy(() => import('src/views/tenant/conditional/DeployVacation'))
 const NamedLocations = React.lazy(() => import('src/views/tenant/conditional/NamedLocations'))
 
 const ListConditionalTemplates = React.lazy(() =>
@@ -55,7 +66,7 @@ const DeployConditional = React.lazy(() => import('src/views/tenant/conditional/
 const ListLicences = React.lazy(() => import('src/views/tenant/administration/ListLicences'))
 const ListAppConsent = React.lazy(() => import('src/views/tenant/administration/ListOauthApps'))
 
-const BasicAuthReport = React.lazy(() => import('src/views/identity/reports/BasicAuthReport'))
+const InActiveUserReport = React.lazy(() => import('src/views/identity/reports/InactiveUsers'))
 const SignInReport = React.lazy(() => import('src/views/identity/reports/SignIns'))
 
 const AzureADConnectReport = React.lazy(() =>
@@ -67,6 +78,7 @@ const DeviceComplianceReport = React.lazy(() =>
 const BestPracticeAnalyzer = React.lazy(() =>
   import('src/views/tenant/standards/BestPracticeAnalyser'),
 )
+const BPAReportBuilder = React.lazy(() => import('src/views/tenant/standards/BPAReportBuilder'))
 const DomainsAnalyser = React.lazy(() => import('src/views/tenant/standards/DomainsAnalyser'))
 const OffboardingWizard = React.lazy(() =>
   import('src/views/identity/administration/OffboardingWizard'),
@@ -114,12 +126,7 @@ const AutopilotListStatusPages = React.lazy(() =>
 )
 const IntuneListPolicies = React.lazy(() => import('src/views/endpoint/intune/MEMListPolicies'))
 const MEMEditPolicy = React.lazy(() => import('src/views/endpoint/intune/MEMEditPolicy'))
-const EditAutopilotProfile = React.lazy(() =>
-  import('src/views/endpoint/autopilot/AutopilotEditProfile'),
-)
-const EditAutopilotStatusPage = React.lazy(() =>
-  import('src/views/endpoint/autopilot/AutopilotEditStatusPage'),
-)
+
 const IntuneCAPolicies = React.lazy(() => import('src/views/endpoint/intune/MEMCAPolicies'))
 const IntuneAddPolicy = React.lazy(() => import('src/views/endpoint/intune/MEMAddPolicy'))
 const MEMAddPolicyTemplate = React.lazy(() =>
@@ -172,6 +179,9 @@ const MailboxClientAccessSettingsList = React.lazy(() =>
 const MailboxStatisticsList = React.lazy(() =>
   import('src/views/email-exchange/reports/MailboxStatisticsList'),
 )
+const SharedMailboxEnabledAccount = React.lazy(() =>
+  import('src/views/email-exchange/reports/SharedMailboxEnabledAccount'),
+)
 const MessageTrace = React.lazy(() => import('src/views/email-exchange/reports/MessageTrace'))
 const PhishingPoliciesList = React.lazy(() =>
   import('src/views/email-exchange/reports/PhishingPoliciesList'),
@@ -216,10 +226,22 @@ const SecurityComplianceIncidents = React.lazy(() =>
 const License = React.lazy(() => import('src/views/pages/license/License'))
 const ServiceHealth = React.lazy(() => import('src/views/tenant/administration/ServiceHealth'))
 
+const EnterpriseApplications = React.lazy(() =>
+  import('src/views/tenant/administration/ListEnterpriseApps'),
+)
+const AppConsentRequests = React.lazy(() =>
+  import('src/views/tenant/administration/ListAppConsentRequests'),
+)
+const MailboxRestoreWizard = React.lazy(() =>
+  import('src/views/email-exchange/tools/MailboxRestoreWizard'),
+)
+const MailboxRestores = React.lazy(() => import('src/views/email-exchange/tools/MailboxRestores'))
+
 const routes = [
   // { path: '/', exact: true, name: 'Home' },
   { path: '/home', name: 'Home', component: Home },
   { path: '/cipp/logs', name: 'Logs', component: Logs },
+  { path: '/cipp/scheduler', name: 'Scheduler', component: Scheduler },
 
   { path: '/cipp/404', name: 'Error', component: Page404 },
   { path: '/cipp/403', name: 'Error', component: Page403 },
@@ -228,6 +250,11 @@ const routes = [
   { path: '/identity/administration/users/add', name: 'Add User', component: AddUser },
   { path: '/identity/administration/users/edit', name: 'Edit User', component: EditUser },
   { path: '/identity/administration/users/view', name: 'View User', component: ViewUser },
+  {
+    path: '/identity/administration/users/InviteGuest',
+    name: 'Invite Guest',
+    component: InviteGuest,
+  },
   { path: '/identity/administration/ViewBec', name: 'View BEC', component: ViewBEC },
   { path: '/identity/administration', name: 'Administration' },
   { path: '/identity/administration/users', name: 'Users', component: Users },
@@ -267,9 +294,9 @@ const routes = [
   { path: '/endpoint/reports/devices', name: 'Devices', component: Devices },
   { path: '/identity/reports/mfa-report', name: 'MFA Report', component: MFAReport },
   {
-    path: '/identity/reports/basic-auth-report',
-    name: 'Basic Auth Report',
-    component: BasicAuthReport,
+    path: '/identity/reports/inactive-users-report',
+    name: 'Inactive Users Report',
+    component: InActiveUserReport,
   },
   {
     path: '/identity/reports/Signin-report',
@@ -287,6 +314,8 @@ const routes = [
   { path: '/tenant/administration/tenants/edit', name: 'Edit Tenant', component: EditTenant },
   { path: '/tenant/administration/domains', name: 'Domains', component: Domains },
   { path: '/tenant/administration/alertswizard', name: 'Alerts Wizard', component: AlertWizard },
+  { path: '/tenant/administration/alertrules', name: 'Alerts Wizard', component: AlertRules },
+
   { path: '/tenant/administration/alertsqueue', name: 'Alerts Queue', component: AlertsQueue },
   {
     path: '/tenant/administration/graph-explorer',
@@ -299,9 +328,24 @@ const routes = [
     component: ServiceHealth,
   },
   {
+    path: '/tenant/administration/enterprise-apps',
+    name: 'Enterprise Applications',
+    component: EnterpriseApplications,
+  },
+  {
+    path: '/tenant/administration/app-consent-requests',
+    name: 'App Consent Requests',
+    component: AppConsentRequests,
+  },
+  {
     path: '/tenant/conditional/list-policies',
     name: 'Conditional Access',
     component: ConditionalAccess,
+  },
+  {
+    path: '/tenant/conditional/deploy-vacation',
+    name: 'Deploy Vacation Mode',
+    component: DeployVacationCA,
   },
   {
     path: '/tenant/conditional/list-named-locations',
@@ -359,6 +403,21 @@ const routes = [
     name: 'Individual Domain Check',
     component: IndividualDomain,
   },
+  {
+    path: '/tenant/administration/tenantlookup',
+    name: 'Tenant Lookup',
+    component: TenantLookup,
+  },
+  {
+    path: '/tenant/tools/geoiplookup',
+    name: 'Geo IP Lookup',
+    component: GeoIPLookup,
+  },
+  {
+    path: '/tenant/tools/bpa-report-builder',
+    name: 'BPA Report Builder',
+    component: BPAReportBuilder,
+  },
   { path: '/tenant/standards/alert-list', name: 'Alert List (Alpha)', component: ListAlerts },
   { path: '/endpoint', name: 'Endpoint' },
   { path: '/endpoint/applications', name: 'Applications' },
@@ -407,16 +466,6 @@ const routes = [
     path: '/endpoint/autopilot/list-status-pages',
     name: 'List Status Pages',
     component: AutopilotListStatusPages,
-  },
-  {
-    path: '/endpoint/autopilot/edit-autopilot-profiles',
-    name: 'Edit Autopilot Profiles',
-    component: EditAutopilotProfile,
-  },
-  {
-    path: '/endpoint/autopilot/edit-autopilot-status-page',
-    name: 'Edit Autopilot Status Page',
-    component: EditAutopilotStatusPage,
   },
   { path: '/endpoint/MEM', name: 'MEM' },
   { path: '/endpoint/MEM/list-policies', name: 'List MEM Policies', component: IntuneListPolicies },
@@ -519,6 +568,16 @@ const routes = [
     component: SpamFilterTemplate,
   },
   {
+    path: '/email/tools/mailbox-restore-wizard',
+    name: 'Mailbox Restore Wizard',
+    component: MailboxRestoreWizard,
+  },
+  {
+    path: '/email/tools/mailbox-restores',
+    name: 'Mailbox Restores',
+    component: MailboxRestores,
+  },
+  {
     path: '/email/spamfilter/add-template',
     name: 'Add Spamfilter Template',
     component: AddSpamFilterTemplate,
@@ -569,11 +628,18 @@ const routes = [
     component: MailboxStatisticsList,
   },
   {
+    name: 'Shared Mailbox Enabled Account',
+    path: '/email/reports/SharedMailboxEnabledAccount',
+    component: SharedMailboxEnabledAccount,
+  },
+  {
     name: 'Mailbox Client Access Settings',
     path: '/email/reports/mailbox-cas-settings',
     component: MailboxClientAccessSettingsList,
   },
   { name: 'Message Trace', path: '/email/reports/message-trace', component: MessageTrace },
+  { path: '/cipp/user-settings', name: 'User Settings', component: UserSettings },
+
   {
     name: 'Phishing Policies',
     path: '/email/reports/phishing-policies',
